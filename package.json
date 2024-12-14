@@ -8,10 +8,10 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
-    "zod": "^3.23.8"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.7.2"
   },
   "publishConfig": {
     "access": "public"
