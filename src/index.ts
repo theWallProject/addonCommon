@@ -1,12 +1,13 @@
 import {z} from "zod";
 
-export const ReasonsSchema = z.array(z.enum(["h", "f", "u"]));
+export const ReasonsSchema = z.array(z.enum(["h", "f", "u", "b"]));
 export type ReasonsSchemaType = z.infer<typeof ReasonsSchema>;
 
 export enum APIListOfReasons {
   HeadQuarterInIL = "h",
   FounderInIL = "f",
   Url = "u",
+  BDS = "b",
 }
 
 export enum DBFileNames {
