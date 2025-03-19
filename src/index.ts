@@ -43,19 +43,19 @@ export type APIEndpointConfig = {
 export const API_ENDPOINT_RULE_LINKEDIN = {
   fileName: DBFileNames.FLAGGED_LI_COMPANY,
   domain: "linkedin.com",
-  regex: "linkedin.[^/]+/(?:company|showcase)/([^/?]+)",
+  regex: "(?:linkedin.com)/(?:company|showcase)/([^/?]+)",
 } as const satisfies APIEndpointRule;
 
 export const API_ENDPOINT_RULE_FACEBOOK = {
   fileName: DBFileNames.FLAGGED_FACEBOOK,
   domain: "facebook.com",
-  regex: "facebook.[^/]+/([^/?]+)",
+  regex: "(?:facebook.com)/([^/?]+)",
 } as const satisfies APIEndpointRule;
 
 export const API_ENDPOINT_RULE_TWITTER = {
   fileName: DBFileNames.FLAGGED_TWITTER,
   domain: "twitter.com",
-  regex: "(?:twitter|x|t).[^/]+/([^/?]+)",
+  regex: "(?:twitter.com|x.com|t.co)/([^/?]+)",
 } as const satisfies APIEndpointRule;
 
 export const CONFIG: APIEndpointConfig = {
