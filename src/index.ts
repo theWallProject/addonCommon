@@ -82,7 +82,7 @@ export function getMainDomain(url: string) {
     }
     return ""; // If no domain is found
   } catch (e) {
-    console.error("getMainDomain Invalid URL:", url);
+    console.error("getMainDomain Invalid URL:", url, e);
     return "";
   }
 }
