@@ -73,14 +73,19 @@ export const CONFIG: APIEndpointConfig = {
  **/
 export function getMainDomain(url: string) {
   try {
-    const {hostname} = new URL(url);
+    // Add protocol if missing
+    const urlWithProtocol =
+      url.startsWith("http://") || url.startsWith("https://")
+        ? url
+        : `https://${url}`;
 
+    const {hostname} = new URL(urlWithProtocol);
     const parsed = parse(hostname);
 
     if (parsed.domain) {
-      return parsed.domain; // Return the main domain
+      return parsed.domain;
     }
-    return ""; // If no domain is found
+    return "";
   } catch (e) {
     console.error("getMainDomain Invalid URL:", url, e);
     return "";
