@@ -85,9 +85,11 @@ export function getMainDomain(url: string) {
     if (parsed.domain) {
       return parsed.domain;
     }
+    console.warn("getMainDomain empty:", url);
+
     return "";
   } catch (e) {
-    console.error("getMainDomain Invalid URL:", url, e);
+    console.error("getMainDomain error:", url, e);
     return "";
   }
 }
