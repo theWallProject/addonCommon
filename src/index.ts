@@ -1,3 +1,5 @@
+import {parse} from "tldts";
+
 import {z} from "zod";
 
 export const ReasonsSchema = z.array(z.enum(["h", "f", "u", "b"]));
@@ -65,3 +67,22 @@ export const CONFIG: APIEndpointConfig = {
     API_ENDPOINT_RULE_TWITTER,
   ],
 };
+
+/**
+ * Extracts the main domain from a given URL.
+ **/
+export function getMainDomain(url: string) {
+  try {
+    const {hostname} = new URL(url);
+
+    const parsed = parse(hostname);
+
+    if (parsed.domain) {
+      return parsed.domain; // Return the main domain
+    }
+    return ""; // If no domain is found
+  } catch (e) {
+    console.error("getMainDomain Invalid URL:", url);
+    return "";
+  }
+}
