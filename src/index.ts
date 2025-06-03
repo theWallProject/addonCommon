@@ -82,8 +82,8 @@ export function getMainDomain(url: string) {
     const {hostname} = new URL(urlWithProtocol);
     const parsed = parse(hostname);
 
-    if (parsed.domain) {
-      return parsed.domain;
+    if (parsed.hostname) {
+      return parsed.hostname.replace("www.", "");
     }
     console.warn("getMainDomain empty:", url);
 
