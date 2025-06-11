@@ -2,12 +2,28 @@ import {parse} from "tldts";
 
 import {z} from "zod";
 
-export const ReasonsSchema = z.array(z.enum(["h", "f", "u", "b"]));
+export const ReasonsSchema = z.array(z.enum(["h", "f", "u", "b", "i"]));
 export type ReasonsSchemaType = z.infer<typeof ReasonsSchema>;
 
 export enum APIListOfReasons {
+  /**
+   * HeadQ Location: Israel
+   * Operating Status: Active
+   */
   HeadQuarterInIL = "h",
+  /**
+   * HeadQ Location: Not Israel
+   * Operating Status: Active
+   * Founders > Location: Israel
+   */
   FounderInIL = "f",
+  /**
+   * HeadQ Location: Not Israel
+   * Operating Status: Active
+   * Founders > Location: Not Israel
+   * Investors > Location: Israel
+   */
+  InvestorNotFounderInIL = "i",
   Url = "u",
   BDS = "b",
 }
