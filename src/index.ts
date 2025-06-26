@@ -50,9 +50,28 @@ export type APIEndpointDomainsResult = {
   id: string;
   reasons: APIListOfReasonsValues[];
   name: string;
-  comment?: string;
-  link?: string;
 };
+
+export const FinalDBFileSchema = z.object({
+  id: z.string(),
+  ws: z.string(),
+  li: z.string().optional(),
+  fb: z.string().optional(),
+  tw: z.string().optional(),
+  r: z.array(
+    z.enum([
+      APIListOfReasons.HeadQuarterInIL,
+      APIListOfReasons.FounderInIL,
+      APIListOfReasons.InvestorNotFounderInIL,
+      APIListOfReasons.Url,
+      APIListOfReasons.BDS,
+    ])
+  ),
+  /** name */
+  n: z.string(),
+  /** comment */
+  c: z.string().optional(),
+});
 
 export type APIEndpointDomains = APIEndpointDomainsResult[];
 
