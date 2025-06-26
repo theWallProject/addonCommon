@@ -21,7 +21,7 @@ export const APIListOfReasons = {
 export type valuesOfListOfReasons =
   (typeof APIListOfReasons)[keyof typeof APIListOfReasons];
 
-const APIListOfReasonsSchema = z.enum([
+export const APIListOfReasonsSchema = z.enum([
   APIListOfReasons.HeadQuarterInIL,
   APIListOfReasons.FounderInIL,
   APIListOfReasons.InvestorNotFounderInIL,
