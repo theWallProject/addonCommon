@@ -62,7 +62,7 @@ export type APIEndpointDomainsResult = z.infer<
 
 export const FinalDBFileSchema = z.object({
   id: z.string(),
-  ws: z.string(),
+  ws: z.string().optional(),
   li: z.string().optional(),
   fb: z.string().optional(),
   tw: z.string().optional(),
