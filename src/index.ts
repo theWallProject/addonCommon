@@ -5,28 +5,31 @@ import {z} from "zod";
 export const ReasonsSchema = z.array(z.enum(["h", "f", "u", "b", "i"]));
 export type ReasonsSchemaType = z.infer<typeof ReasonsSchema>;
 
-export enum APIListOfReasons {
-  /**
-   * HeadQ Location: Israel
-   * Operating Status: Active
-   */
-  HeadQuarterInIL = "h",
-  /**
-   * HeadQ Location: Not Israel
-   * Operating Status: Active
-   * Founders > Location: Israel
-   */
-  FounderInIL = "f",
-  /**
-   * HeadQ Location: Not Israel
-   * Operating Status: Active
-   * Founders > Location: Not Israel
-   * Investors > Location: Israel
-   */
-  InvestorNotFounderInIL = "i",
-  Url = "u",
-  BDS = "b",
-}
+/**
+ * Enum-like object for APIListOfReasons, for code reference.
+ */
+export const APIListOfReasons = {
+  /** HeadQ Location: Israel, Operating Status: Active */
+  HeadQuarterInIL: "h",
+  /** HeadQ Location: Not Israel, Operating Status: Active, Founders > Location: Israel */
+  FounderInIL: "f",
+  /** HeadQ Location: Not Israel, Operating Status: Active, Founders > Location: Not Israel, Investors > Location: Israel */
+  InvestorNotFounderInIL: "i",
+  /** Url */
+  Url: "u",
+  /** BDS */
+  BDS: "b",
+} as const;
+
+const APIListOfReasonsSchema = z.enum([
+  APIListOfReasons.HeadQuarterInIL,
+  APIListOfReasons.FounderInIL,
+  APIListOfReasons.InvestorNotFounderInIL,
+  APIListOfReasons.Url,
+  APIListOfReasons.BDS,
+]);
+
+// export type APIListOfReasonsSchemaType = z.infer<typeof APIListOfReasonsSchema>;
 
 export enum DBFileNames {
   ALL = "ALL",
@@ -37,7 +40,8 @@ export enum DBFileNames {
 }
 
 export type DBFileNamesValues = `${DBFileNames}`;
-export type APIListOfReasonsValues = `${APIListOfReasons}`;
+export type APIListOfReasonsValues =
+  (typeof APIListOfReasons)[keyof typeof APIListOfReasons];
 
 type APIEndpointRule = {
   fileName: DBFileNamesValues;
@@ -45,12 +49,16 @@ type APIEndpointRule = {
   regex: string;
 };
 
-export type APIEndpointDomainsResult = {
-  selector: string;
-  id: string;
-  reasons: APIListOfReasonsValues[];
-  name: string;
-};
+export const APIEndpointDomainsResultSchema = z.object({
+  selector: z.string(),
+  id: z.string(),
+  reasons: z.array(APIListOfReasonsSchema),
+  name: z.string(),
+});
+
+export type APIEndpointDomainsResult = z.infer<
+  typeof APIEndpointDomainsResultSchema
+>;
 
 export const FinalDBFileSchema = z.object({
   id: z.string(),
@@ -58,15 +66,7 @@ export const FinalDBFileSchema = z.object({
   li: z.string().optional(),
   fb: z.string().optional(),
   tw: z.string().optional(),
-  r: z.array(
-    z.enum([
-      APIListOfReasons.HeadQuarterInIL,
-      APIListOfReasons.FounderInIL,
-      APIListOfReasons.InvestorNotFounderInIL,
-      APIListOfReasons.Url,
-      APIListOfReasons.BDS,
-    ])
-  ),
+  r: z.array(APIListOfReasonsSchema),
   /** name */
   n: z.string(),
   /** comment */
