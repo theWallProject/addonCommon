@@ -73,6 +73,8 @@ export const FinalDBFileSchema = z.object({
   c: z.string().optional(),
 });
 
+export type FinalDBFileType = z.infer<typeof FinalDBFileSchema>;
+
 export type APIEndpointDomains = APIEndpointDomainsResult[];
 
 export type APIEndpointConfig = {
