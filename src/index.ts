@@ -42,7 +42,11 @@ export enum DBFileNames {
 export type DBFileNamesValues = `${DBFileNames}`;
 export type APIListOfReasonsValues =
   (typeof APIListOfReasons)[keyof typeof APIListOfReasons];
-export type SpecialDomains = "linkedin.com" | "facebook.com" | "twitter.com";
+export type SpecialDomains =
+  | "linkedin.com"
+  | "facebook.com"
+  | "twitter.com"
+  | "x.com";
 
 type APIEndpointRule = {
   domain: SpecialDomains;
