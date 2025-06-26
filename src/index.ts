@@ -2,9 +2,6 @@ import {parse} from "tldts";
 
 import {z} from "zod";
 
-export const ReasonsSchema = z.array(z.enum(["h", "f", "u", "b", "i"]));
-export type ReasonsSchemaType = z.infer<typeof ReasonsSchema>;
-
 /**
  * Enum-like object for APIListOfReasons, for code reference.
  */
@@ -20,6 +17,9 @@ export const APIListOfReasons = {
   /** BDS */
   BDS: "b",
 } as const;
+
+export type valuesOfListOfReasons =
+  (typeof APIListOfReasons)[keyof typeof APIListOfReasons];
 
 const APIListOfReasonsSchema = z.enum([
   APIListOfReasons.HeadQuarterInIL,
