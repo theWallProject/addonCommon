@@ -46,6 +46,7 @@ type APIEndpointRule = {
 
 export type APIEndpointDomainsResult = {
   selector: string;
+  id: string;
   reasons: APIListOfReasonsValues[];
   name: string;
   comment?: string;
