@@ -75,6 +75,7 @@ export const FinalDBFileSchema = z.object({
   n: z.string(),
   /** comment */
   c: z.string().optional(),
+  alt: z.array(z.object({n: z.string(), ws: z.string()})).optional(),
 });
 
 export type FinalDBFileType = z.infer<typeof FinalDBFileSchema>;
