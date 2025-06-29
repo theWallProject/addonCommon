@@ -58,6 +58,8 @@ export const APIEndpointDomainsResultSchema = z.object({
   id: z.string(),
   reasons: z.array(APIListOfReasonsSchema),
   name: z.string(),
+  /** stock sympol */
+  s: z.string().optional(),
 });
 
 export type APIEndpointDomainsResult = z.infer<
@@ -75,6 +77,8 @@ export const FinalDBFileSchema = z.object({
   n: z.string(),
   /** comment */
   c: z.string().optional(),
+  /** stock sympol */
+  s: z.string().optional(),
   alt: z.array(z.object({n: z.string(), ws: z.string()})).optional(),
 });
 
