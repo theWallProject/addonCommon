@@ -75,6 +75,8 @@ export const FinalDBFileSchema = z.object({
   n: z.string(),
   /** comment */
   c: z.string().optional(),
+  /** stock sympol */
+  s: z.string().optional(),
   alt: z.array(z.object({n: z.string(), ws: z.string()})).optional(),
 });
 
